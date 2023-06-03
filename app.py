@@ -117,7 +117,7 @@ class Loans(db.Model):
 # <---------------------------------END of creating tables-------------------------------------------------------------->    
 
 # <---------------------------------server routes and methods----------------------------------------------------------->   
-# MY_SERVER = http://127.0.0.1:5000
+# MY_SERVER = https://libraryamir.onrender.com/
 
 # Homepage
 @app.route("/", methods = ['GET'])
@@ -125,14 +125,14 @@ def homepage():
     return redirect("/index.html")
 
 #Customers
-#http://127.0.0.1:5000/customers 
+#http://https://libraryamir.onrender.com/customers 
 @app.route('/customers', methods = ['GET'])
 def get_all_customers():
     customers = Customers.query.filter_by(active=1).all()
     return flask.jsonify([customer.to_dict() for customer in customers])
 
 #Customer addition
-#http://127.0.0.1:5000/customers
+#http://https://libraryamir.onrender.com/customers
 @app.route('/customers', methods = ['POST'])
 def new_customer():
     data = request.get_json()
@@ -150,7 +150,7 @@ def new_customer():
     return flask.jsonify({'message': 'Customer created successfully'})
 
 #Customer update
-#http://127.0.0.1:5000/customers/<id>
+#http://https://libraryamir.onrender.com/customers/<id>
 @app.route('/customers/<id>', methods = ['POST'])
 def update_customer(id):
     data = request.get_json()
@@ -168,7 +168,7 @@ def update_customer(id):
     return "The customer does not exist"
 
 #Customer deletion
-#http://127.0.0.1:5000/customers/<id>
+#http://https://libraryamir.onrender.com/customers/<id>
 @app.route('/customers/<id>', methods = ['DELETE'])
 def delete_customer(id):
     delete_row = Customers.query.filter_by(id=id).first()
@@ -179,14 +179,14 @@ def delete_customer(id):
     return "The customer does not exist"
 
 #Books
-#http://127.0.0.1:5000/books 
+#http://https://libraryamir.onrender.com/books 
 @app.route("/books", methods = ['GET'])
 def show_books():
     books = Books.query.filter_by(active=1).all()
     return flask.jsonify([book.to_dict() for book in books])
 
 #Book addition
-#http://127.0.0.1:5000/books
+#http://https://libraryamir.onrender.com/books
 @app.route('/books', methods = ['POST'])
 def new_book():
     data = request.get_json()
@@ -205,7 +205,7 @@ def new_book():
     return flask.jsonify({'message': 'Book created successfully'})
 
 #Book update
-#http://127.0.0.1:5000/books/<id>
+#http://https://libraryamir.onrender.com/books/<id>
 @app.route('/books/<id>', methods = ['POST'])
 def update_book(id):
     data = request.get_json()
@@ -226,7 +226,7 @@ def update_book(id):
     return "The book does not exist"
 
 #Book deletion
-#http://127.0.0.1:5000/books/<id>
+#http://https://libraryamir.onrender.com/books/<id>
 @app.route('/books/<id>', methods = ['DELETE'])
 def delete_book(id):
     delete_row = Books.query.filter_by(id=id).first()
@@ -237,7 +237,7 @@ def delete_book(id):
     return "The book does not exist"
 
 #Loans
-#http://127.0.0.1:5000/loans 
+#http://https://libraryamir.onrender.com/loans 
 @app.route("/loans", methods=['GET'])
 def show_loans():
     loans = Loans.query.all()
@@ -245,7 +245,7 @@ def show_loans():
     return flask.jsonify([loan.to_dict() for loan in loans])
 
 #late loans
-#http://127.0.0.1:5000/loans/late 
+#http://https://libraryamir.onrender.com/loans/late 
 @app.route("/loans/late", methods=['GET'])
 def show_late_loans():
     unreturned_loans = Loans.query.filter_by(return_date = None).all()
@@ -266,7 +266,7 @@ def show_late_loans():
 
     return flask.jsonify([loan.to_dict() for loan in late_loans])
 
-#http://127.0.0.1:5000/loans
+#http://https://libraryamir.onrender.com/loans
 # New loan
 @app.route('/loans', methods = ['POST'])
 def new_loan():
@@ -287,7 +287,7 @@ def new_loan():
     return "New loan was added."
 
 #Return book
-#http://127.0.0.1:5000/loans/return/<id>
+#http://https://libraryamir.onrender.com/loans/return/<id>
 @app.route('/loans/return/<id>', methods = ['POST'])
 def delete_loan(id):
     return_loan = Loans.query.filter_by(id=id).first()
