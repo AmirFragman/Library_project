@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="form_add.css" />
+  <head>
+    <title>Add Customer</title>
+  </head>
+  <body>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="cust_name" required style="padding: 5px" minlength="3"/> <br />
+
+      <label for="city">City:</label>
+      <input type="text" id="cust_city" required style="padding: 5px" minlength="3"/><br />
+
+      <label for="age">Age:</label><br>
+      <input type="number" id="cust_age" required min="5" style="padding: 5px"/><br>
+
+      <button onclick="newCust();">Add a new customer</button>
+    </div>
+
+    <script>
+      function newCust() {
+        const url = "http://127.0.0.1:5000/customers";
+        const data = {
+          name: cust_name.value,
+          city: cust_city.value,
+          age: cust_age.value,
+        };
+
+        axios.post(url, data).then((response) => {
+            const message = `New customer ${cust_name.value}, from: ${cust_city.value} was added`;
+            alert(message);
+          })
+          .catch((error) => {
+            console.error("Error adding customer:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

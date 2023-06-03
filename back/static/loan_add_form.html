@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="form_add.css" />
+  <title>Create new loan</title>
+</head>
+
+<body>
+
+    <div></div>
+  <form id="loanForm">
+    <label for="customerId">Customer ID:</label>
+    <input type="number" id="customerId" name="customerId" required min="1"><br>
+
+    <label for="bookId">Book ID:</label>
+    <input type="number" id="bookId" name="bookId" required min="1"><br>
+
+    <button type="button" onclick="newLoan()">Create Loan</button>
+  </form>
+
+  <script>
+    function newLoan() {
+      const url = "http://127.0.0.1:5000/loans";
+      const data = {
+        cust_id: customerId.value,
+            book_id: bookId.value
+      };
+
+      axios.post(url, data).then((response) => {
+              const message = `New loan created id of loaner: ${customerId.value}, Book ID: ${bookId.value}`;
+              alert(message);
+        })
+        .catch((error) => {
+          console.error("Error adding book:", error);
+        });
+    }
+
+
+  </script>
+</body>
+
+</html>
